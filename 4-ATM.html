@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM</title>
+    <style>
+        input,
+        label,
+        #btn_WithdrawTrans {
+            display: none;
+        }
+
+        button {
+            width: 100px;
+            height: 50px;
+        }
+
+        .containers {
+            width: 600px;
+            height: 400px;
+            background-color: grey;
+            margin: auto;
+            margin-top: 100px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="containers">
+        <h1 class="title">Bank Account</h1>
+        <button id="btn_Balance">Balance</button>
+        <button id="btn_Withdraw">Withdraw</button>
+        <button id="btn_deposit">deposit</button>
+        <hr>
+        <div>
+            <h1 id="h1Value"></h1>
+        </div>
+    </div>
+    <script>
+        let BalanceFirst = 3000; /// 
+        const Balance = document.getElementById("btn_Balance");
+        const Withdraw = document.getElementById("btn_Withdraw");
+        const deposit = document.getElementById("btn_deposit");
+
+        /////////////////Balance////////////////////////////
+
+        Balance.addEventListener("click", (event) => {
+            document.getElementById("h1Value").innerHTML = `The Balance is $` + BalanceFirst;
+            document.getElementById("h1Value").style.display = "block";
+            console.log(`caurent balance` + BalanceFirst)
+
+        });
+
+
+        /////////////////Withdraw////////////////////////////
+
+        Withdraw.addEventListener("click", (event) => {
+            document.getElementById("h1Value").innerHTML = `The Balance is $` + BalanceFirst;
+            document.getElementById("h1Value").style.display = "block";
+            promptWithdraw();
+
+        });
+
+        /////////////////prompt Withdraw////////////////////////////
+
+        function promptWithdraw() {
+            let valueWithdraw = + prompt("Please Enter the amount of money you want to withdraw");
+            if (valueWithdraw === 0 || valueWithdraw == "") {
+                promptWithdraw();
+            }
+            else if (valueWithdraw > BalanceFirst) {
+                alert("Your Balance is not enough");
+                promptWithdraw();
+
+            }
+            else {
+
+                BalanceFirst = BalanceFirst - valueWithdraw;
+
+                document.getElementById("h1Value").style.display = "block";
+                document.getElementById("h1Value").innerHTML = `The Balance is $` + BalanceFirst;
+            }
+        }
+        /////////////////Deposit////////////////////////////
+        deposit.addEventListener("click", (event) => {
+            let valueDeposit = + prompt("Please Enter the amount of money you want to deposit");
+            BalanceFirst += valueDeposit;
+
+            document.getElementById("h1Value").innerHTML = `The Balance is $` + BalanceFirst;
+            document.getElementById("h1Value").style.display = "block";
+
+        });
+
+    </script>
+</body>
+
+</html>

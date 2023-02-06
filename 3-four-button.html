@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- // 3)  Make 4 buttons the first generates a user-defined amount of random numbers and stores them in the array, the second button will find the largest number, the third finds the smallest number, the fourth sums the array, and the fifth finds the average of the array. -->
+    <button id="btn_RandomNumber">Random numbers</button>
+    <button id="btn_LargestNum">largest number</button>
+    <button id="btn_SmallestNumber">smallest number</button>
+    <button id="btn_Sum">Sum</button>
+    <button id="btn_Avg">Average</button>
+    <h1></h1>
+    <script>
+        const RandomNumber = document.getElementById("btn_RandomNumber");
+        const LargestNum = document.getElementById("btn_LargestNum");
+        const SmallestNumber = document.getElementById("btn_SmallestNumber");
+        const SumNumbers = document.getElementById("btn_Sum");
+        const AvgNumbers = document.getElementById("btn_Avg");
+
+        let number_array = [];
+
+        RandomNumber.addEventListener("click", (event) => {
+            number_array.length = 0;
+            let counter = +prompt("Enter the amount of random numbers");
+            let h1_arrayNum = document.createElement("h1");
+            h1_arrayNum.style.color = "red";
+            document.querySelector("body").appendChild(h1_arrayNum);
+            h1_arrayNum.innerHTML = `random numbers is:`;
+
+            for (let index = 0; index < counter; index++) {
+                const r = Math.floor(Math.random() * counter);
+                number_array.push(r);
+                if(index==counter-1){
+                h1_arrayNum.innerHTML += `${r}`;
+                }
+                else{
+                    h1_arrayNum.innerHTML += `${r},`;
+                }
+            }
+            console.log(number_array)
+
+        });
+
+        LargestNum.addEventListener("click", (event) => {
+            let max_Num = 0;
+            let h1_Max = document.createElement("h1");
+            h1_Max.style.color = "green";
+            document.querySelector("body").appendChild(h1_Max);
+            h1_Max.innerHTML = `Max number is:`;
+
+            for (let index = 0; index < number_array.length; index++) {
+
+                if (max_Num <= number_array[index]) {
+                    max_Num = number_array[index];
+                }
+            }
+            h1_Max.innerHTML += max_Num;
+        });
+
+        SmallestNumber.addEventListener("click", (event) => {
+            let min_Num = number_array[0];
+            let h1_Min = document.createElement("h1");
+            h1_Min.style.color = "blue";
+            document.querySelector("body").appendChild(h1_Min);
+            h1_Min.innerHTML = `Min number is:`;
+
+            for (let index = 0; index < number_array.length; index++) {
+
+                if (min_Num >= number_array[index]) {
+                    min_Num = number_array[index];
+                }
+            }
+            h1_Min.innerHTML += min_Num;
+        });
+
+        SumNumbers.addEventListener("click", (event) => {
+             let Sum_Num = 0;
+            let h1_sum = document.createElement("h1");
+            h1_sum.style.color = "grey";
+            document.querySelector("body").appendChild(h1_sum);
+            h1_sum.innerHTML = `Sum of numbers is:`;
+
+            for (let index = 0; index < number_array.length; index++) {
+
+               Sum_Num += number_array[index];
+                
+            }
+            h1_sum.innerHTML += Sum_Num;
+        });
+
+        AvgNumbers.addEventListener("click", (event) => {
+             let Avg_Num = 0;
+             let Sum_Num = 0;
+            let h1_Avg = document.createElement("h1");
+            h1_Avg.style.color = "purple";
+            document.querySelector("body").appendChild(h1_Avg);
+            h1_Avg.innerHTML = `Avg of numbers is:`;
+
+            for (let index = 0; index < number_array.length; index++) {
+                Sum_Num += number_array[index];
+                //Avg_Num += number_array[index];
+                
+            }
+            Avg_Num =Sum_Num/number_array.length;
+            h1_Avg.innerHTML += Avg_Num;
+        });
+
+    </script>
+</body>
+
+</html>
